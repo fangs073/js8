@@ -4,7 +4,7 @@ angular.module('app', ['ngAnimate'])
 		$scope.images = [
 			{
 				src: './img/salami.jpg',
-				caption: 'go hang a salami'
+				caption: 'go hang a salami',
 			},
 			{
 				src: './img/lasagna.jpg',
@@ -13,7 +13,11 @@ angular.module('app', ['ngAnimate'])
 
 		]
 
-		$scope.active = 1;
+		$scope.images.forEach(function(val,i,arr) {
+			arr[i].index = i;
+		})
+
+		$scope.active = 0;
 
 		$scope.logVal = function(index) {
 			console.log("active: "+$scope.active+" $index: "+index)
