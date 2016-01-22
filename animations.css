@@ -1,9 +1,16 @@
 .invisible {
-  display: none;
+  opacity: 0;
   transition: all linear 0.5s;
   -webkit-transition: all linear 0.5s;
 }
 .visible {
+  opacity: 1;
   transition: all linear 0.5s;
   -webkit-transition: all linear 0.5s;
+}
+.carousel {
+  overflow: hidden;
+}
+.becoming-active {
+  transition: all linear 0.5s;
 }

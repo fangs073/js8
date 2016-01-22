@@ -18,11 +18,14 @@
         </ul>
       </nav>
       
-    	<div ng-controller="carouselController">
-	      <div class="jumbotron" ng-repeat="image in images track by $index" ng-click="active = (active+1)%2; logVal(image.index)" ng-class="{'invisible': active !== image.index, 'visible': active === image.index}">
+    	<div ng-controller="carouselController" class="carousel">
+	      <div class="jumbotron" ng-repeat="image in images track by $index" ng-click="incrementActive(); logVal(image.index)" ng-class="{'invisible': carousel.image !== $index, 'visible': carousel.image === $index}">
 	      	<img ng-src="{{ image.src }}" class="jumbotron-bg" >
 	          <h3 class="jumbotron-subtitle" ng-bind="image.caption"></h3>
 	      </div>
+        <div class="carousel-icons">
+          <img ng-repeat="icon in icons" ng-src="{{ icon.src }}" ng-click="icon.click()"  />
+        </div>
 	    </div>
 
       <div class="sign-up-link">

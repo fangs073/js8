@@ -1,5 +1,5 @@
 angular.module('app', ['ngAnimate'])
-	.controller('carouselController', ['$scope', function($scope){
+	.controller('carouselController', ['$scope', '$interval', function($scope, $interval){
 
 		$scope.images = [
 			{
@@ -9,20 +9,111 @@ angular.module('app', ['ngAnimate'])
 			{
 				src: './img/lasagna.jpg',
 				caption: "i'm a lasagna hog"
+			},
+			{
+				src: './img/prosciutto.jpg',
+				caption: "this is prosciutto"
+			},
+			{
+				src: './img/prosciutto_w_melon.jpg',
+				caption: 'tutto prosciutto'
 			}
 
 		]
 
-		$scope.images.forEach(function(val,i,arr) {
-			arr[i].index = i;
-		})
+		$scope.carousel = {
+			image : 0,
+			active : true,
+		};
 
-		$scope.active = 0;
-
-		$scope.logVal = function(index) {
-			console.log("active: "+$scope.active+" $index: "+index)
+		$scope.incrementActive = function() {
+			$scope.carousel.image = ($scope.carousel.image+1) % $scope.images.length 
 		}
 
+		$scope.decrementActive = function() {
+			if ($scope.carousel.image !== 0) {
+				$scope.carousel.image = ($scope.carousel.image-1) % $scope.images.length 
+			} else {
+				$scope.carousel.image = $scope.images.length-1
+			}
+		}
+
+		$scope.logVal = function(index) {
+			console.log("active: "+$scope.active+" index: "+index)
+		}
+
+		$scope.icons = [
+			{
+				name : 'left',
+				src : 'img/left_arrow.png',
+				show: { active: true},
+				click : function() {
+					$scope.decrementActive();
+					if ($scope.carousel.active) {
+						$scope.stopCarousel();
+						$scope.startCarousel()
+					}
+				}
+			},
+			{
+				name : 'pause',
+				src : 'img/pause_icon.png',
+				playSrc : 'img/play_icon.png',
+				pauseSrc : 'img/pause_icon.png',
+				show : $scope.carousel,
+				click : function() {
+					$scope.toggleCarousel();
+					if (this.src === this.playSrc)
+						this.src = this.pauseSrc
+					else
+						this.src = this.playSrc
+				},
+
+			},
+			{
+				name : 'right',
+				src : 'img/right_arrow.png',
+				show : { active : true},
+				click : function() {
+					$scope.incrementActive();
+					if ($scope.carousel.active) {
+						$scope.stopCarousel();
+						$scope.startCarousel()
+					}
+				}
+			},
+		]
+
+
+
+		var playCarousel;
+
+		$scope.toggleCarousel = function() {
+			if ($scope.carousel.active === true) {
+				$scope.stopCarousel()
+			} else {
+				$scope.startCarousel()
+			}
+
+		}
+
+		$scope.startCarousel = function() {
+			$scope.carousel.active = true;
+			playCarousel = $interval(function(){
+				$scope.incrementActive();
+
+			},2000);
+		}
+
+		$scope.stopCarousel = function() {
+			$scope.carousel.active = false;
+			$interval.cancel(playCarousel);
+			
+		}
+
+		$scope.startCarousel()
+		//$interval.cancel(playCarousel);
+		
 
 
 	}]);

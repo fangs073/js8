@@ -8,6 +8,7 @@ blue = #2980b9
 light-grey = #95a5a6
 dark-grey = #7f8c8d
 green = #1abc9c
+white-outline = -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 
 body
 	background dark-grey
@@ -57,26 +58,43 @@ a
 	padding 5px
 	background-color green
 
-.jumbotron
+.carousel
 	position relative
+	height 300px
+	&-icons
+		position absolute
+		bottom 0
+		left 20px
+		img
+			height 32px
+			width 32px
+
+.jumbotron
+	position absolute
 	margin auto
 	width 500px
 	padding-top 10px
+	&-title
+		top 0
+		left 5px
+	&-bg
+		position relative
+	&-title,
+	&-subtitle
+		position absolute
+	&-subtitle
+		bottom 0
+		right 5px
+		text-shadow white-outline
 
-.jumbotron-bg
-	position relative
+
+
 	
-.jumbotron-title,
-.jumbotron-subtitle
-	position absolute
+
 	
-.jumbotron-title
-	top 0
-	left 5px
+
 	
-.jumbotron-subtitle
-	bottom 0
-	right 5px
+
 	
 .main-page-content
 	padding-top 10px
