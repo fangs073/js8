@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<title></title>
+	<link rel ="stylesheet" href="normalize.css">
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="stylesheet" type="text/css" href="animations.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
+	<script src="https://code.angularjs.org/1.5.0-rc.0/angular-animate.min.js"></script>
+	<script type="text/javascript" src="js8.js"></script>
+</head>
+<body>
+
+	<div class="main" >
+      <nav class="nav-bar" ng-controller="navController">
+        <ul class="buttons">
+        	<a ng-repeat="link in navTemplate" ng-href="{{link.link}}"><li ng-bind="link.name"></li></a>
+        </ul>
+      </nav>
+      
+    	<div ng-controller="carouselController">
+	      <div class="jumbotron" ng-repeat="image in images track by $index" ng-click="active = (active+1)%2; logVal($index)" ng-class="{'invisible': active !== $index, 'visible': active === $index}">
+	      	<img ng-src="{{ image.src }}" class="jumbotron-bg" >
+	          <h3 class="jumbotron-subtitle" ng-bind="image.caption"></h3>
+	      </div>
+	    </div>
+
+      <div class="sign-up-link">
+        <a href="#" ng-click="signUpClick()">Sign Up For Our Spam List!</a>
+      </div>
+
+      <div class="main-page-content" ng-controller="paragraphController">
+        
+        <div class="paragraph-container" ng-repeat="paragraph in paragraphTemplate">
+          <h4 ng-bind="paragraph.header"></h4>
+          <img ng-src="{{paragraph.img}}">
+          <p ng-bind="paragraph.content"></p>
+        </div>
+      
+
+      </div>
+
+      <footer class="footer">
+        <a href="#">Here's our footer info or whatever click here</a>
+      </footer>
+
+    </div>
+
+</body>
+</html>
