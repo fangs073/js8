@@ -19,7 +19,7 @@
       </nav>
       
     	<div ng-controller="carouselController" class="carousel">
-	      <div class="jumbotron" ng-repeat="image in images track by $index" ng-click="incrementActive(); logVal(image.index)" ng-class="{'invisible': carousel.image !== $index, 'visible': carousel.image === $index}">
+	      <div class="jumbotron" ng-repeat="image in images track by $index" ng-click="incrementActive(); logVal(image.index)" ng-class="{'active' : carousel.image === $index, 'left-image' : carousel.image === 0 ? $index === images.length - 1 : $index === carousel.image -1, 'right-image' : carousel.image === images.length-1 ? $index === 0 : $index === carousel.image + 1}">
 	      	<img ng-src="{{ image.src }}" class="jumbotron-bg" >
 	          <h3 class="jumbotron-subtitle" ng-bind="image.caption"></h3>
 	      </div>

@@ -102,7 +102,7 @@ angular.module('app', ['ngAnimate'])
 			playCarousel = $interval(function(){
 				$scope.incrementActive();
 
-			},2000);
+			},4000);
 		}
 
 		$scope.stopCarousel = function() {

@@ -1,16 +1,32 @@
 .invisible {
   opacity: 0;
-  transition: all linear 0.5s;
-  -webkit-transition: all linear 0.5s;
+  transition: all linear 2s;
+  -webkit-transition: all linear 2s;
 }
 .visible {
   opacity: 1;
-  transition: all linear 0.5s;
-  -webkit-transition: all linear 0.5s;
+  transition: all linear 2s;
+  -webkit-transition: all linear 2s;
+}
+.jumbotron {
+  display: none;
 }
 .carousel {
   overflow: hidden;
 }
-.becoming-active {
-  transition: all linear 0.5s;
+.carousel .active {
+  display: block;
+  right: 0;
+  left: 0;
+  transition: all linear 2s;
+}
+.carousel .left-image {
+  display: block;
+  left: -500px;
+  transition: all linear 2s;
+}
+.carousel .right-image {
+  display: block;
+  right: -1000px;
+  transition: all linear 2s;
 }
